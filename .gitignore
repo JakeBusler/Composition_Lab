@@ -1,0 +1,18 @@
+# Build artifacts
+*.exe
+*.obj
+*.o
+*.out
+*.pdb
+*.ilk
+
+# Build directories
+build/
+bin/
+out/
+cmake-build-*/
+
+# IDE directories
+.vs/
+.vscode/
+.idea/

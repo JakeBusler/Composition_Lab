@@ -1,0 +1,82 @@
+<mxfile host="Electron" modified="2026-11-03T13:55:00.000Z" agent="Mozilla/5.0" version="21.6.8" type="device">
+  <diagram id="diagram_part2" name="Composition Lab UML">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="950" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- BankAccount (Base Class with Composition) -->
+        <mxCell id="ba" value="BankAccount" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="340" y="40" width="400" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="ba_attrs" value="- accountNumber : string&#10;- accountHolderName : string&#10;- balance : double&#10;- transactionHistory : vector&lt;Transaction&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="ba">
+          <mxGeometry y="30" width="400" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="ba_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#334155;" vertex="1" parent="ba">
+          <mxGeometry y="105" width="400" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="ba_methods" value="+ BankAccount()&#10;+ BankAccount(accNum : string, holderName : string, initialBalance : double)&#10;+ getAccountNumber() : string&#10;+ getAccountHolderName() : string&#10;+ getBalance() : double&#10;+ setAccountHolderName(name : string) : void&#10;+ deposit(amount : double) : void&#10;+ withdraw(amount : double) : bool&#10;+ printDetails() : void&#10;+ printHistory() : void&#10;+ getAccountType() : string&#10;+ operator+=(amount : double) : BankAccount&amp;&#10;+ operator-=(amount : double) : BankAccount&amp;&#10;+ operator==(other : BankAccount) : bool&#10;+ operator&lt;(other : BankAccount) : bool&#10;+ operator&gt;(other : BankAccount) : bool" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="ba">
+          <mxGeometry y="113" width="400" height="305" as="geometry" />
+        </mxCell>
+
+        <!-- Transaction Class (Composed) -->
+        <mxCell id="txn" value="Transaction" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f0fdf4;strokeColor=#166534;" vertex="1" parent="1">
+          <mxGeometry x="870" y="140" width="360" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="txn_attrs" value="+ type : string&#10;+ amount : double&#10;+ timestamp : string" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="txn">
+          <mxGeometry y="30" width="360" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="txn_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#166534;" vertex="1" parent="txn">
+          <mxGeometry y="90" width="360" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="txn_methods" value="+ Transaction()&#10;+ Transaction(type : string, amount : double, timestamp : string)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="txn">
+          <mxGeometry y="98" width="360" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Composition Line from BankAccount to Transaction (Filled Diamond on BankAccount side) -->
+        <mxCell id="comp_line" value="composed of (has-a)&#10;1               0..*" style="endArrow=none;startArrow=diamond;startFill=1;startSize=18;html=1;rounded=0;exitX=1;exitY=0.4;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#0f172a;" edge="1" parent="1" source="ba" target="txn">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- CheckingAccount (Derived Class) -->
+        <mxCell id="chk" value="CheckingAccount" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="80" y="560" width="420" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="chk_attrs" value="- transactionFee : double" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="chk">
+          <mxGeometry y="30" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="chk_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#334155;" vertex="1" parent="chk">
+          <mxGeometry y="60" width="420" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="chk_methods" value="+ CheckingAccount()&#10;+ CheckingAccount(accNum : string, holderName : string, initialBal : double, fee : double)&#10;+ getTransactionFee() : double&#10;+ setTransactionFee(fee : double) : void&#10;+ withdraw(amount : double) : bool&#10;+ printDetails() : void&#10;+ getAccountType() : string" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="chk">
+          <mxGeometry y="68" width="420" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- SavingsAccount (Derived Class) -->
+        <mxCell id="sav" value="SavingsAccount" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="600" y="560" width="420" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="sav_attrs" value="- interestRate : double" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="sav">
+          <mxGeometry y="30" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sav_line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#334155;" vertex="1" parent="sav">
+          <mxGeometry y="60" width="420" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="sav_methods" value="+ SavingsAccount()&#10;+ SavingsAccount(accNum : string, holderName : string, initialBal : double, rate : double)&#10;+ getInterestRate() : double&#10;+ setInterestRate(rate : double) : void&#10;+ calculateInterest() : void&#10;+ printDetails() : void&#10;+ getAccountType() : string" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=10;spacingRight=10;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="sav">
+          <mxGeometry y="68" width="420" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Inheritance Arrow from CheckingAccount to BankAccount -->
+        <mxCell id="arrow_chk" value="inherits (is-a)" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#1e293b;" edge="1" parent="1" source="chk" target="ba">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Inheritance Arrow from SavingsAccount to BankAccount -->
+        <mxCell id="arrow_sav" value="inherits (is-a)" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#1e293b;" edge="1" parent="1" source="sav" target="ba">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
